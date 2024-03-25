@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+    td{
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+    <h1>회원가입</h1>
+
+    <form action="/memberImport/signUp.do">
+    <!-- form은 Servlet이 받아서 처리해줄 것, 따라서 form이 보내질 경로와 Servlet의 어노테이션 경로가 같으면 됨 -->
+    <!-- 절대경로로 이 memberImport라는 파일에서 signUp.do라는 명령 수행, 이 어노테이션을 가진 Servlet이 받아줄 것 -->
+        <fieldset>
+            <legend>정보 입력</legend>
+            <table>
+                <tr>
+                    <td style="width: 90px;">아이디</td>
+                    <td><input type="text" name="userId" style="float: left;"></td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" name="userPassword" style="float: left;"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="userName" style="float: left;"></td>
+                </tr>
+                <tr>
+                    <td>생물학적 성별</td>
+                    <td>
+                        <input type="radio" name="gender" id="male" style="float: left;">
+                        <label for="male" value="m" style="float: left;">남</label>
+                        <input type="radio" name="gender" id="female" style="float: left;">
+                        <label for="female" value="f" style="float: left;">여</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>장르</td>
+                    <td>
+                        <input type="checkbox" name="genre" value="jazz" id="jazz" style="float: left;">
+                        <label for="jazz" value="jazz" style="float: left;">재즈</label>
+                        <input type="checkbox" name="genre" value="hipHop" id="hipHop" style="float: left;">
+                        <label for="hipHop" value="hipHop" style="float: left;">힙합</label>
+                        <input type="checkbox" name="genre" value="balad" id="balad" style="float: left;">
+                        <label for="balad" value="balad" style="float: left;">발라드</label>
+                        <input type="checkbox" name="genre" value="EDM" id="EDM" style="float: left;">
+                        <label for="EDM" value="EDM" style="float: left;">EDM</label>
+                        <input type="checkbox" name="genre" value="futureBase" id="futureBase" style="float: left;">
+                        <label for="futureBase" value="futureBase" style="float: left;">퓨쳐베이스</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <input type="submit" style="float: left">
+        <input type="reset" style="float: left">
+    </form>
+</body>
+</html>
