@@ -105,13 +105,14 @@ public class PizzaServlet extends HttpServlet {
 		request.setAttribute("side", side);
 		request.setAttribute("payment", payment);
 		request.setAttribute("price", price);
+//		request에 값을 다시 담아주는 것
 		
 //		응답 페이지에 필요한 데이터만 담아서 출력해도 됨
 		// dispacher : 응답할 뷰와 Servlet을 연결해주는 객체
 		
 		// 응답할 뷰 선택
 		RequestDispatcher view = request.getRequestDispatcher("views/pizza/pizzaPayment.jsp");
-		// 선택된 뷰가 사용자에게 보여지도록 포워딩
+		// 선택된 뷰가 사용자에게 보여지도록 포워딩 (보낸다)
 		view.forward(request, response);
 	}
 
