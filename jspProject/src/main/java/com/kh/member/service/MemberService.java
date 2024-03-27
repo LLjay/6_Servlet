@@ -1,9 +1,11 @@
 package com.kh.member.service;
 
-//import com.kh.common.JDBCTemplate;
-import static com.kh.common.JDBCTemplate.getConnection;
 import static com.kh.common.JDBCTemplate.close;
 //import static com.kh.common.JDBCTemplate.*; // 여기서는 * 해도 됨, 다 static으로 만들었으니까
+//import com.kh.common.JDBCTemplate;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 
@@ -19,6 +21,28 @@ public class MemberService {
 		close(conn);
 		
 		return mem;
+	}
+	
+//	public int insertMember(String userId, String userPwd, String userName, String phone, String email, String address, String[] interest) {
+//		Connection conn = getConnection();
+//		int result = new MemberDao().insertMember(conn, userId, userPwd, userName, phone, email, address, interest);
+//		
+//		close(conn);
+//		return result;
+//	}
+	
+	public int insertMember(Member m) {
+		Connection conn = getConnection();
+		int result = new MemberDao().insertMember(conn, m);
+		
+		if (result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
 	}
 
 }
