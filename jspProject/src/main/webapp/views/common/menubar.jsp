@@ -5,7 +5,7 @@
     Member loginUser = (Member)session.getAttribute("loginUser");
     // 로그인 시도 전 menubar.jsp 로딩 시 : null
     // 로그인 시도 성공 menubar.jsp 로딩 시 : 로그인 성공한 회원의 정보
-    String alertMsg = (String)session.getAttribute("alertMsg");
+    String alertMsg = (String)session.getAttribute("alertMsg"); // alertMsg는 명령어임
     // 서비스 요청 전 : null
     // 서비스 요청 후 : alert를 띄워줄 메세지
 
@@ -40,7 +40,10 @@
         color: black;
         text-decoration: none;
     }
-    .nav-area{background: black};
+    .nav-area{
+        background: black;
+        
+    }
     .menu{
         display: table-cell;
         width: 150px;
@@ -48,7 +51,7 @@
     }
     .menu a{
         line-height: 50px;
-        font-size:2px;
+        font-size: 20px;
         font-weight: bold;
         text-align: center;
         width: 100%;
@@ -110,7 +113,7 @@
         <div align="center;">
             <b><%= loginUser.getUserName()%></b>의 방문을 환영합니다 <br><br>
             <div>
-                <a href="">마이페이지</a>
+                <a href="<%=contextPath%>/myPage.me">마이페이지</a>
                 <a href="<%=contextPath%>/logout.me">로그아웃</a>
             </div>
         </div>
@@ -123,10 +126,10 @@
     <br clear="both">
 
     <div class="nav-area" align="center">
-        <div><a href="menu">HOME</a></div>
-        <div><a href="menu">공지사항</a></div>
-        <div><a href="menu">일반게시판</a></div>
-        <div><a href="menu">사진게시판</a></div>
+        <div class="menu"><a href="<%=contextPath %>">HOME</a></div>
+        <div class="menu"><a href="<%=contextPath %>/list.no">공지사항</a></div>
+        <div class="menu"><a href="">일반게시판</a></div>
+        <div class="menu"><a href="">사진게시판</a></div>
 
     </div>
 
