@@ -41,7 +41,7 @@
         <% if (loginUser != null && loginUser.getUserId().equals("admin")) {%>
             <!-- 현재 로그인한 사용자가 관리자일 때 -->
             <div align="right" style="width: 850px; margin-bottom: 4px;">
-                <a href="" class="btn btn-sm btn-secondary">글쓰기</a>
+                <a href="<%=contextPath %>/enroll.no" class="btn btn-sm btn-secondary">글쓰기</a>
             </div>
         <%}%>
         <table class="list-area" align="center">
@@ -63,6 +63,7 @@
                     <!-- 공지사항이 있을 경우 -->
                     <% for(Notice n : list) { %>
                         <tr>
+                        <!-- tr 행을 누르면 넘어가는 것이므로 tr에 이벤트 걸어야 함 -->
                             <td><%=n.getNoticeNo()%></td>
                             <td><%=n.getNoticeTitle()%></td>
                             <td><%=n.getNoticeWriter()%></td>
@@ -74,5 +75,35 @@
             </tbody>
         </table>
     </div>
+    <script>
+        const trList = document.querySelectorAll(".list-area > tbody > tr");
+        // [tr, tr, tr] // tr 리스트 쿼리셀렉터로 가져옴
+        for(const tr of trList){ // 배열 안의 tr을 하나하나 꺼내서 for문으로 돌리고
+            tr.onclick = function(ev){ // tr을 클릭 했을 때 익명함수로 이벤트 핸들러를 달아주고
+                // url / kh/detail.no
+                console.log(this.childNodes[0].innerText);
+                console.log(this.childNodes[1].innerText);
+                console.log(this.childNodes[2].innerText);
+                // const noticeNo = this.childNodes[1].innerText;
+                const noticeNo = this.children[0].innerText;
+                console.log(this.childNodes)
+                // noticeNo는 이걸 호출한 사람 즉 tr의 childNodes 첫번째의 innerText
+                // console.log(noticeNo);
+
+                // 클릭한 게 무조건 this가 됨
+                // onclick 한 게 이 함수를 호출한 것일 테니까
+                // 자식들을 배열로 꺼내줄 수 있음
+                location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
+                // 세부사항을 가져오려면 각각에 해당하는 정보를 가지고 있어야 함
+            }
+        }       
+        // $(function(){
+        //     $(".list-area > tbody > tr").click(function(){
+        //         const noticeNo = $(this).children().eq(0).text();
+        //         location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
+        //     })
+        // });
+    </script>
+    
 </body>
 </html>
