@@ -85,6 +85,7 @@
                 console.log(this.childNodes[1].innerText);
                 console.log(this.childNodes[2].innerText);
                 // const noticeNo = this.childNodes[1].innerText;
+                // childNodes는 모든 텍스트, children은 태그 안의 것들만
                 const noticeNo = this.children[0].innerText;
                 console.log(this.childNodes)
                 // noticeNo는 이걸 호출한 사람 즉 tr의 childNodes 첫번째의 innerText
@@ -99,7 +100,7 @@
         }       
         // $(function(){
         //     $(".list-area > tbody > tr").click(function(){
-        //         const noticeNo = $(this).children().eq(0).text();
+        //         const noticeNo = $(this).children().eq(0).text(); // eq로 children 안의 순번을 지정
         //         location.href = "<%=contextPath%>/detail.no?num=" + noticeNo;
         //     })
         // });

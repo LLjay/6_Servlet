@@ -56,9 +56,13 @@
         </table>
         <br><br>
         <div align="center">
-            <a href="">목록 가기</a>
-            <a href="">수정하기</a>
-            <a href="">삭제하기</a>
+            <a href="<%=contextPath%>/list.no>" class="btn btn-sm btn-secondary">목록 가기</a>
+            <% if (loginUser != null && loginUser.getUserId().equals(n.getNoticeWriter())) {%>
+            <!-- 현재 로그인한 사용자가 해당 글을 쓴 본인 일  때에만 -->
+            <a href="<%=contextPath %>/updateForm.no?num=<%=n.getNoticeNo()%>" class="btn btn-sm btn-warning">수정하기</a>
+            <!-- 이 공지에 대한 정보를 넘겨줘야 찾을 수 있음, 세션에 넘기는 건 별로 좋지 않으므로 어차피 넘버는 가지고 있으니까 프라이머리 키로 넘겨줄 것 -->
+            <a href="<%=contextPath %>/delete.no?num=<%=n.getNoticeNo() %>" class="btn btn-sm btn-danger">삭제하기</a>
+            <% } %>
         </div>
     </div>
 </body>

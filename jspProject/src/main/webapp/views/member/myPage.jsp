@@ -106,7 +106,8 @@
                             <button type="submit" class="btn btn-sm btn-secondary">정보변경</button>
                             <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
                                 data-target="#update-pwd-modal">비밀정보변경</button>
-                            <button type="button" class="btn btn-sm btn-danger">회원탈퇴</button>
+                            <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                            	data-target="#delete-modal">회원탈퇴</button>
                         </div>
                     </form>
                     <!-- 뒤가 까매지고 팝업창이 뜨는 창을 모달창이라고 함 -->
@@ -183,6 +184,34 @@
                         </div>
                     </div>
                 </div>
+				
+				<!-- 회원탈퇴 Modal -->
+                <div class="modal" id="delete-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">회원탈퇴</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body" align="center">
+                                <form action="<%=contextPath%>/delete.me" method="POST">
+                                    <b>탈퇴 후 복구가 불가능합니다. <br>
+                                        정말로 탈퇴 하시겠습니까? </b>
+                                    <br><br>
+                                    <input type="hidden" name="userId" value="<%=userId%>">
+                                    비밀번호 : <input type="password" name="userPwd" required>
+                                    <br><br>
+                                    <button type="submit" class="btn btn-sm btn-danger">탈퇴하기</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
     </body>
 
     </html>
