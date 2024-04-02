@@ -7,20 +7,42 @@ public class Board {
 	private int boardType;
 	private String categoryNo;
 //	작성 기능 같은 것을 사용할 때 카테고리 번호 | 조회 카테고리 명 등으로 쓸 수 있도록 String으로 함
+//	여기에 번호 말고 다른 내용들을 join 해서 넣어올 수 있도록 String으로 바꿔놓은 거구나
 	private String boardTitle;
 	private String boardContent;
 	private String boardWriter; 
 //	작성 기능 시 회원 번호 | 조회 기능 회원 아이디
 	private int count;
-	private Date createDate;
+	private String createDate;
 	private String status;
 	
 	public Board() {
 		super();
 	}
 
+	public Board(int boardNo, String categoryNo, String boardTitle, String boardContent, String boardWriter,
+			String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.categoryNo = categoryNo;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.createDate = createDate;
+	}
+
+	public Board(int boardNo, String categoryNo, String boardTitle, String boardWriter, int count, String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.categoryNo = categoryNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+	}
+
 	public Board(int boardNo, int boardType, String categoryNo, String boardTitle, String boardContent,
-			String boardWriter, int count, Date createDate, String status) {
+			String boardWriter, int count, String createDate, String status) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -89,11 +111,11 @@ public class Board {
 		this.count = count;
 	}
 
-	public Date getCreateDate() {
+	public String getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(String createDate) {
 		this.createDate = createDate;
 	}
 

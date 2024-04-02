@@ -10,5 +10,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/dev_tool/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="C:/dev_tool/cos-22.05/lib/cos.jar"/>
 	<classpathentry kind="output" path="src/main/webapp/WEB-INF/classes"/>
 </classpath>

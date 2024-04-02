@@ -1,6 +1,7 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.Board;
 import com.kh.board.service.BoardService;
+import com.kh.common.vo.PageInfo;
 
 /**
  * Servlet implementation class BoardListController
@@ -29,6 +32,7 @@ public class BoardListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		// ------------------페이징 처리-------------------- //
 		// 총 개수를 알아야 페이징을 몇 묶음으로 할지가 나옴
 		int listCount; // 현재 총 게시글 수
@@ -100,6 +104,16 @@ public class BoardListController extends HttpServlet {
 		
 		// startPage가 11이면 endPage는 20(만약 maxPage가 13이라면 endPage도 13이어야 함)
 		endPage = endPage > maxPage ? maxPage : endPage;
+		
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		
+		ArrayList<Board> list = new BoardService().selectList(pi);
+//		pageinfo에 페이징 바의 시작과 끝이 있으므로 그것도 보내줘야 그릴 수 있음
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		System.out.println(pi);
+		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
+		
 	}
 
 	/**
