@@ -111,7 +111,6 @@ public class BoardListController extends HttpServlet {
 //		pageinfo에 페이징 바의 시작과 끝이 있으므로 그것도 보내줘야 그릴 수 있음
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		System.out.println(pi);
 		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
 		
 	}

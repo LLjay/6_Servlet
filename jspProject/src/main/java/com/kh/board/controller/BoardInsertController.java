@@ -112,7 +112,7 @@ public class BoardInsertController extends HttpServlet {
 			at = new Attachment();
 			at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 			at.setChangeName(multiRequest.getFilesystemName("upfile"));
-//			filesystemName 바뀐 파일 이름
+//			filesystemName 시스템에 저장한 파일을 가져와줘
 			at.setFilePath("resources/board_upfile/");
 			}
 			
