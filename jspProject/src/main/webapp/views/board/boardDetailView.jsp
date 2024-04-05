@@ -20,9 +20,10 @@
         background-color: black;
         color: white;
         width: 1000px;
-        height: 500px;
+        height: auto;
         margin: auto;
         margin-top: 50px;
+        padding-bottom: 24px;
     }
     
     .outer table{
@@ -92,6 +93,107 @@
             <a href="<%=contextPath %>/delete.bo?bno=<%=b.getBoardNo() %>" class="btn btn-sm btn-danger">삭제하기</a>
             <%} %>
         </div>
+
+        <br>
+
+        <div id="reply-area">
+            <table align="center">
+                <thead>
+                    <tr>
+                        <th>댓글 작성</th>
+                        <%if (loginUser != null){ %>
+                        <td>
+                            <textarea id="reply-content" cols="50" rows="3" style="resize: none;"></textarea>
+                        </td>
+                        <td>
+                            <button onclick="insertReply()">댓글 등록</button>
+                        </td>
+                        <%} else { %>
+                        <td>
+                            <textarea id="reply-content" cols="50" rows="3" style="resize: none;"></textarea>
+                        </td>
+                        <td>
+                            <button disabled>댓글 등록</button>
+                        </td>
+                        <%} %>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <!-- <tr>
+                        <td>user06</td>
+                        <td>댓글 남깁니다.</td>
+                        <td>2024/03/05</td>
+                    </tr>
+                    <tr>
+                        <td>user06</td>
+                        <td>댓글 남깁니다.</td>
+                        <td>2024/03/05</td>
+                    </tr>
+                    <tr>
+                        <td>user06</td>
+                        <td>댓글 남깁니다.</td>
+                        <td>2024/03/05</td>
+                    </tr> -->
+                </tbody>
+            </table>
+
+            <script>
+                window.onload = function(){
+                    
+                    setInterval(selectReplyList(), 2000);
+                    // 일정 시간마다 특정 함수를 실행 시켜주는 함수
+                }
+
+                function selectReplyList(){
+                    $.ajax({
+                        url: "rlist.bo",
+                        data: {
+                            bno: <%=b.getBoardNo()%>
+                        },
+                        success: function(res){
+                            for(let reply of res){
+                                str += ("<tr>"
+                                    + "<td>" + reply.replyWriter + "</td>"
+                                    + "<td>" + reply.replyContent + "</td>"
+                                    + "<td>" + reply.createDate + "</td>"
+                                    + "</tr>");
+                            }
+                            // innerHTML로 넣어주기 위해 String으로 다 붙이고 있는 것
+                            document.querySelector("#reply-area tbody").innerHTML = str;
+                        },
+                        error: function(){
+                            console.log("댓글 조회 중 ajax 통신 실패")
+                        }
+                    })
+                }
+                
+                function insertReply() {
+                    const boardNo = <%=b.getBoardNo()%>;
+                    const content = document.querySelector("#reply-content").value;
+                    // textarea이기 때문에 value가 아니라 innerText로 해야 함
+                    $.ajax({
+                        url : "rinsert.bo",
+                        data : {
+                            bno : boardNo,
+                            content : content
+                            // 키와 밸류가 같으면 content 하나만 써도 됨
+                        },
+                        type : "POST",
+                        success : function(res){
+                            
+                            selectReplyList();
+                            document.querySelector("#reply-content").value = "";
+                        },
+                        error : function(){
+                            console.log("댓글 작성 중 ajax 통신 실패")
+                        }
+
+                    })
+                }
+            </script>
+        </div>
+
     </div>
 </body>
 </html>

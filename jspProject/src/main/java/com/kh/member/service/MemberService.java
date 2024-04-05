@@ -1,10 +1,10 @@
 package com.kh.member.service;
 
 import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
 //import static com.kh.common.JDBCTemplate.*; // 여기서는 * 해도 됨, 다 static으로 만들었으니까
 //import com.kh.common.JDBCTemplate;
 import static com.kh.common.JDBCTemplate.getConnection;
-import static com.kh.common.JDBCTemplate.commit;
 import static com.kh.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
@@ -93,4 +93,11 @@ public class MemberService {
 		return result;
 	}
 
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		int count = new MemberDao().idCheck(conn, checkId);
+		
+		close(conn);
+		return count;
+	}
 }
