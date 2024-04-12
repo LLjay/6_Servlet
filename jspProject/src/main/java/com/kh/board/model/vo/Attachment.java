@@ -4,12 +4,12 @@ import java.sql.Date;
 
 public class Attachment {
 	private int fileNo;
-	private int refBoardNo;
-	private String originName;
+//	private int refBoardNo;
+//	private String originName;
 	private String changeName;
 	private String filePath;
-	private Date uploadDate;
-	private int fileLevel;
+//	private Date uploadDate;
+//	private int fileLevel;
 	private String status;
 	
 	public Attachment() {
