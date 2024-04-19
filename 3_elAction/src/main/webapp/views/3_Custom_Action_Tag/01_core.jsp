@@ -167,6 +167,8 @@
         <!-- db에 배열을 넣을 수도 있는데 불편해서 그냥 나눠서 넣음, json도 파일 객체 자체로 저장할 수 있는데 불편 -->
         <!-- 배열을 넣으면 검색하기 힘들어짐 / 구조를 가져와서 쓸 때 빈공간이 있으면 프론트에서 힘들어짐, 백 프론트 양쪽에게 다 편한 방법이 쪼개는 것 -->
     </ul>
+    <c:forEach var="c" begin=></c:forEach>
+
 
     <%
         ArrayList<Person> list = new ArrayList<>();
@@ -201,7 +203,6 @@
                 <c:when test="${empty pList}">
                     <tr><td colspan="3">조회된 사람이 없습니다.</td></tr>
                 </c:when>
-                c:
             </c:choose>
 
             <!-- <c:set var="plist" value="<%=list%>" scope="request">

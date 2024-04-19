@@ -25,6 +25,44 @@ public class TotalNote {
 	 * 
 	 * # HttpServletResponse
 	 * 		
-	 * 
+	 * <div id="rest-review">
+            <c:if test="${detailPage eq 1}">
+                <%@ include file="restMainViewReview.jsp" %>
+            </c:if>
+      </div>
+      -> eq은 EL 태그 안에서 사용해야 함
+      <jsp:forward> 태그는 페이지 전체를 포워딩 해버리는 것이므로 일부를 가져올 수 없음
+      
+      jQuery, jstl 전부 추가 안 해서 안 먹었었음
+      
+      SELECT COUNT(*)
+		FROM REVIEW
+		WHERE REST_NO = #{restNo}
+		AND REVIEW_STATUS = 'Y'
+		<choose>
+		<!-- number 형태라서 ratingCount가 맞는 게 없어서 AND 조건이 실행이 하나도 안 돼서 다 7개 뜬 것 -->
+			<when test="ratingCount == 1">
+				AND REVIEW_RATING = 1
+			</when>
+			<when test="ratingCount == 2">
+				AND REVIEW_RATING = 2
+			</when>
+			<when test="ratingCount == 3">
+				AND REVIEW_RATING = 3
+			</when>
+			<when test="ratingCount == 4">
+				AND REVIEW_RATING = 4
+			</when>
+			<when test="ratingCount == 5">
+				AND REVIEW_RATING = 5
+			</when>
+		</choose>
+		
+		
+		js 파일을 빼지 않으면 EL 태그는 서버에서 먼저 읽기 때문에 돔으로 그려주지 못한 변수명은 인식하지 못해 빼버림
+		<!--
+        EL 구문은 서버를 다녀오므로 이미 한 번 서버를 다녀온 이상 데이터가 바뀔 수 없음
+        EL로 include 하고 싶다면 비동기를 포기해야 함, 서버를 다시 다녀와야 하므로 페이지가 바뀌기 때문에
+        -->
 	 */
 }
